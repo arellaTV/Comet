@@ -3,9 +3,9 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      data: { title: 'Jay' }
+      pages: []
     }
-    this.getPages = this.getPages.bind(this);
+    // this.getPages = this.getPages.bind(this);
   }
 
   componentDidMount() {
@@ -15,17 +15,19 @@ class App extends React.Component {
   getPages() {
     fetch('/pages')
       .then((response) => response.json())
-      .then((responseJSON) => { this.setState({
-          data: responseJSON[0]
-        })
+      .then((responseJSON) => {
+        this.setState({
+          pages: responseJSON
+        });
+        console.log(Array.isArray(responseJSON), responseJSON);
       }).catch((error) => { console.error(error); });
   }
 
   render() {
     return (
       <div>
-        <h1>{this.state.data.title}</h1>
-        <Pages />
+        <h1>Comet!</h1>
+        <Pages pages={this.state.pages}/>
         <Canvas />
       </div>
     );
