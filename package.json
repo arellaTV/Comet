@@ -25,7 +25,7 @@
     "sinon": "^1.17.3"
   },
   "scripts": {
-    "babel": "babel client --watch --out-dir compiled --presets=es2015,react --ignore=node_modules,compiled --source-maps inline",
+    "babel": "babel . --watch --out-dir compiled --presets=es2015,react --ignore=node_modules,compiled,server --source-maps inline",
     "start": "nodemon"
   }
 }
