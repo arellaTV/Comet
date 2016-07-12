@@ -37,7 +37,7 @@ class App extends React.Component {
       <div>
         <h1>Comet!</h1>
         <Pages pages={this.state.pages} handleClick={this.handleClick.bind(this)}/>
-        <Canvas layout={this.state.currentPage}/>
+        <Canvas layout={this.state.currentPage} />
       </div>
     );
   }

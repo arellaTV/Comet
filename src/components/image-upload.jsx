@@ -1,13 +1,16 @@
 class ImageUpload extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {file: '',imagePreviewUrl: ''};
+    console.log(this.props.id);
+    this.state = {file: '',imagePreviewUrl: '', currentPage: this.props.currentPage, currentSelection: this.props.id};
   }
 
   _handleSubmit(e) {
+    debugger;
     e.preventDefault();
     // TODO: do something with -> this.state.file
     console.log('handle uploading-', this.state.file);
+    this.uploadImage(this.state.file, this.state.currentPage, this.state.currentSelection);
   }
 
   _handleImageChange(e) {
@@ -43,7 +46,7 @@ class ImageUpload extends React.Component {
         reject(this.statusText);
       }
     };
-
+    console.log(imageFormData);
     xhr.send(imageFormData);
 
   });
@@ -52,12 +55,10 @@ class ImageUpload extends React.Component {
   render() {
 
     return (
-      <div className="previewComponent">
         <form onSubmit={(e)=>this._handleSubmit(e)}>
           <input className="fileInput" type="file" onChange={(e)=>this._handleImageChange(e)} />
           <button className="submitButton" type="submit" onClick={(e)=>this._handleSubmit(e)}>Upload Image</button>
         </form>
-      </div>
     )
   }
 }
