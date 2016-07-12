@@ -20,5 +20,5 @@ app.post('/pages', pageController.newPage);
 
 // Initiate the server at port 3000
 app.listen(3000, function() {
-  console.log("i'm listening to 8080 right nao");
+  console.log("i'm listening to 3000 right nao");
 });
