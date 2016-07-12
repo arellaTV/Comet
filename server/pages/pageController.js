@@ -5,6 +5,7 @@ var findPage = Q.nbind(Page.findOne, Page);
 var createPage = Q.nbind(Page.create, Page);
 var findAllPages = Q.nbind(Page.find, Page);
 var updatePage = Q.nbind(Page.update, Page);
+var deletePages = Q.nbind(Page.remove, Page);
 
 module.exports = {
   allPages: function (req, res, next) {
@@ -21,6 +22,7 @@ module.exports = {
     console.log('request body is', req.body);
     createPage(req.body)
       .then(function(createdPage) {
+        console.log('in here!');
         if (createdPage) {
           res.json(createdPage);
         }
@@ -29,5 +31,14 @@ module.exports = {
 
   newPanel: function(currentPage, currentSelection, localPath) {
     // updatePage({ id: currentPage, panels: []})
+    console.log(currentPage, currentSelection, localPath);
+    findAllPages().elemMatch('panels', {"id": currentSelection});
+  },
+
+  deleteAll: function(req, res) {
+    deletePages({}, function(err) {
+      console.log(err);
+      res.end();
+    });
   }
 };
