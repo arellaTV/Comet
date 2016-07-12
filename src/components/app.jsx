@@ -4,7 +4,7 @@ class App extends React.Component {
 
     this.state = {
       pages: pageList,
-      currentPage: pageList[1].panels
+      currentPage: pageList[1]
     }
     // this.getPages = this.getPages.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -28,7 +28,7 @@ class App extends React.Component {
   handleClick(event) {
     var targetIndex = event.target.id;
     this.setState({
-      currentPage: pageList[targetIndex].panels
+      currentPage: pageList[targetIndex]
     });
   }
 

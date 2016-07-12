@@ -4,6 +4,7 @@ var Page = require('./pageModel.js');
 var findPage = Q.nbind(Page.findOne, Page);
 var createPage = Q.nbind(Page.create, Page);
 var findAllPages = Q.nbind(Page.find, Page);
+var updatePage = Q.nbind(Page.update, Page);
 
 module.exports = {
   allPages: function (req, res, next) {
@@ -24,5 +25,9 @@ module.exports = {
           res.json(createdPage);
         }
       });
+  },
+
+  newPanel: function(currentPage, currentSelection, localPath) {
+    // updatePage({ id: currentPage, panels: []})
   }
 };
