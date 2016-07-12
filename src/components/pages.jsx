@@ -3,7 +3,7 @@ var Pages = (props) => (
     <h1>Pages</h1>
     <ul>
       {props.pages.map(page =>
-        <li key={page._id}>{page.title}</li>
+        <li onClick={props.handleClick} id={page._id}>{page.title}</li>
       )}
     </ul>
   </div>
