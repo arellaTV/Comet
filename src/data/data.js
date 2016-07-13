@@ -8,10 +8,10 @@ pageList[0] = {
   ]
 };
 pageList[1] = {
-  "title": 'Batman Part 2',
+  "title": "Batman Part 2",
   "panels": [
-    {"i": "d", "x": 0, "y": 0, "w": 5, "h": 9, "path": "/images/test04.png"},
-    {"i": "e", "x": 5, "y": 0, "w": 5, "h": 9, "path": "/images/test05.png"},
-    {"i": "f", "x": 0, "y": 0, "w": 5, "h": 9, "path": "/images/test06.png"}
+    {"x": 0, "y": 0, "w": 5, "h": 9, "path": "/images/test04.png"},
+    {"x": 5, "y": 0, "w": 5, "h": 9, "path": "/images/test05.png"},
+    {"x": 0, "y": 0, "w": 5, "h": 9, "path": "/images/test06.png"}
   ]
 };

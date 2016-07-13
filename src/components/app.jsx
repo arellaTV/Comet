@@ -13,7 +13,7 @@ class App extends React.Component {
   componentDidMount() {
     this.getPages();
     this.setState({
-      currentPage: this.state.pages[0]
+      currentPage: this.state.currentPage
     });
   }
 
@@ -23,13 +23,14 @@ class App extends React.Component {
       .then((responseJSON) => {
         this.setState({
           pages: responseJSON,
-          
+          currentPage: this.state.currentPage
         });
         console.log(Array.isArray(responseJSON), responseJSON);
       }).catch((error) => { console.error(error); });
   }
 
   handleClick(event) {
+    debugger;
     for (var i = 0; i < this.state.pages.length; i++) {
       if (this.state.pages[i]._id === event.target.id)
       this.setState({
@@ -41,9 +42,17 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1 onClick={this.getPages.bind(this)}>Comet!</h1>
-        <Pages pages={this.state.pages} handleClick={this.handleClick.bind(this)}/>
-        <Canvas layout={this.state.currentPage} getPages={this.getPages.bind(this)} />
+        <Nav/>
+        <div className="container">
+          <div className="row-fluid">
+            <div className="col2">
+              <Pages pages={this.state.pages} handleClick={this.handleClick.bind(this)}/>
+            </div>
+            <div className="col10">
+              <Canvas layout={this.state.currentPage} getPages={this.getPages.bind(this)} />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
