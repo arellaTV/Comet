@@ -15,10 +15,11 @@ function saveImage(req, res) {
     fs.readFile(tempPath, (err, data) => {
       // make copy of image to new location
       fs.writeFile(copyToPath, data, (err) => {
-        pageController.newPanel(currentPage, currentSelection, copyToPath);
+        var result = pageController.newPanel(currentPage, currentSelection, copyToPath);
+        res.send(result);
         // delete temp image
         fs.unlink(tempPath, () => {
-          res.send("File uploaded to: " + copyToPath);
+          // res.send("File uploaded to: " + copyToPath);
         });
       });
     });

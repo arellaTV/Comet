@@ -12,6 +12,9 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getPages();
+    this.setState({
+      currentPage: this.state.pages[0]
+    });
   }
 
   getPages() {
@@ -19,30 +22,28 @@ class App extends React.Component {
       .then((response) => response.json())
       .then((responseJSON) => {
         this.setState({
-          pages: responseJSON
+          pages: responseJSON,
+          
         });
         console.log(Array.isArray(responseJSON), responseJSON);
       }).catch((error) => { console.error(error); });
   }
 
   handleClick(event) {
-    console.log('this.state.pages', this.state.pages);
-    console.log(event.target.id);
     for (var i = 0; i < this.state.pages.length; i++) {
       if (this.state.pages[i]._id === event.target.id)
       this.setState({
         currentPage: this.state.pages[i]
       });
     }
-    // var targetIndex = event.target.id;
   }
 
   render() {
     return (
       <div>
-        <h1>Comet!</h1>
+        <h1 onClick={this.getPages.bind(this)}>Comet!</h1>
         <Pages pages={this.state.pages} handleClick={this.handleClick.bind(this)}/>
-        <Canvas layout={this.state.currentPage} />
+        <Canvas layout={this.state.currentPage} getPages={this.getPages.bind(this)} />
       </div>
     );
   }

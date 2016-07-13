@@ -13,7 +13,7 @@ class Canvas extends React.Component {
         <button>Add Panel</button>
         <ReactGridLayout className="layout" layout={this.props.layout.panels} cols={12} rowHeight={30} width={1200}>
           {this.props.layout.panels.map(box =>
-            <div style={{background: 'url(' + box.path + ') center / cover'}} key={box.i}><ImageUpload currentPage={this.props.layout} id={box.i}/></div>
+            <div style={{background: 'url(' + box.path + ') center / cover'}} key={box.i}><ImageUpload currentPage={this.props.layout} id={box._id} getPages={this.props.getPages}/></div>
           )}
         </ReactGridLayout>
       </div>

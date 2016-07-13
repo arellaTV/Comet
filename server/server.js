@@ -18,7 +18,7 @@ app.use(express.static(__dirname + '/../'));
 // Set up routes with corresponding request handlers
 app.get('/pages', pageController.allPages);
 app.post('/pages', pageController.newPage);
-// app.post('/images', middleware.saveImage);
+app.post('/images', middleware.saveImage);
 app.post('/deleteAll', pageController.deleteAll);
 
 // Initiate the server at port 3000

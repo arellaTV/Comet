@@ -10,10 +10,11 @@ class ImageUpload extends React.Component {
   }
 
   _handleSubmit(e) {
-    debugger;
     e.preventDefault();
     console.log('handle uploading-', this.state.file);
-    this.uploadImage(this.state.file, this.state.currentPage._id, this.state.currentSelection);
+    console.log('this.state.currentPage._id', this.state.currentPage);
+    this.uploadImage(this.state.file, this.state.currentPage._id, this.state.currentSelection)
+    .then(this.props.getPages);
   }
 
   _handleImageChange(e) {
@@ -33,8 +34,10 @@ class ImageUpload extends React.Component {
   }
 
   uploadImage(imageFile, currentPage, currentSelection) {
+    console.log(currentPage, currentSelection);
   return new Promise((resolve, reject) => {
     let imageFormData = new FormData();
+    console.log(currentPage);
 
     imageFormData.append('imageFile', imageFile);
     imageFormData.append('currentPage', currentPage);

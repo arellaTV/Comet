@@ -1,11 +1,11 @@
 var Q = require('q');
-var Page = require('./pageModel.js');
+var Canvas = require('./pageModel.js');
+var ObjectId = require('mongoose').Types.ObjectId;
 
-var findPage = Q.nbind(Page.findOne, Page);
-var createPage = Q.nbind(Page.create, Page);
-var findAllPages = Q.nbind(Page.find, Page);
-var updatePage = Q.nbind(Page.update, Page);
-var deletePages = Q.nbind(Page.remove, Page);
+var createPage = Q.nbind(Canvas.Page.create, Canvas.Page);
+var findAllPages = Q.nbind(Canvas.Page.find, Canvas.Page);
+// var updatePanel = Q.nbind(Canvas.Panel.findOneAndUpdate, Canvas.Panel);
+var deletePages = Q.nbind(Canvas.Page.remove, Canvas.Page);
 
 module.exports = {
   allPages: function (req, res, next) {
@@ -22,7 +22,6 @@ module.exports = {
     console.log('request body is', req.body);
     createPage(req.body)
       .then(function(createdPage) {
-        console.log('in here!');
         if (createdPage) {
           res.json(createdPage);
         }
@@ -30,9 +29,15 @@ module.exports = {
   },
 
   newPanel: function(currentPage, currentSelection, localPath) {
-    // updatePage({ id: currentPage, panels: []})
-    console.log(currentPage, currentSelection, localPath);
-    findAllPages().elemMatch('panels', {"id": currentSelection});
+    localPath = localPath.substr(2);
+    console.log('currentPage', currentPage, 'currentSelection', currentSelection, 'localPath', localPath);
+    Canvas.Page.update({ 'panels._id': currentSelection }, { '$set': { 'panels.$.path': localPath } }, function(err, numAffected) {
+      if (err) {
+        console.log(err)
+      }
+      console.log(numAffected);
+    });
+
   },
 
   deleteAll: function(req, res) {
